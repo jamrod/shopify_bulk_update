@@ -18,7 +18,7 @@ def get_products_csv(collection):
         count = 0
         herbs = data.get("products")
         file_writer = csv.writer(write_file)
-        file_writer.writerow(['Herb Name', 'id'])
+        file_writer.writerow(['name', 'id'])
         for herb in herbs:
             count = count + 1
             name = herb.get('title')
@@ -27,7 +27,8 @@ def get_products_csv(collection):
         print("Products downloaded = ", count)
 
 
-# get_products_csv(229315909)
+get_products_csv(229315909)
+
 
 def get_ids_from_csv(file):
     id_list = []
@@ -59,7 +60,7 @@ def update_product_for_grams(id):
     if found_variant:
         keep_variant["title"] = "1 gram"
         keep_variant["option1"] = "1 gram"
-        price = float(keep_variant.get("price")) / 28.3495
+        price = float(keep_variant.get("price")) / 28
         price = "{:.2f}".format(price)
         keep_variant["price"] = price
         keep_variant["weight_unit"] = "g"
@@ -153,4 +154,4 @@ def save_collection_to_file(id, fp):
         return True
 
 
-print(save_collection_to_file(229315909, "data/products_bulk_herbs.json"))
+# print(save_collection_to_file(229315909, "data/products_bulk_herbs.json"))

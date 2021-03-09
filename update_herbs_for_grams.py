@@ -23,7 +23,7 @@ def update_product_for_grams(id):
     if found_variant:
         keep_variant["title"] = "1 gram"
         keep_variant["option1"] = "1 gram"
-        price = float(keep_variant.get("price")) / 28.3495
+        price = float(keep_variant.get("price")) / 28
         price = "{:.2f}".format(price)
         keep_variant["price"] = price
         keep_variant["weight_unit"] = "g"
@@ -72,7 +72,7 @@ def process_text(body):
 
 
 def process_bulk_herbs_for_grams_update():
-    with open("data/bulk_herbs_test.csv") as csv_file:
+    with open("data/bulk_herbs_round_2.csv") as csv_file:
         csv_data = csv.DictReader(csv_file)
         for herb in csv_data:
             name = herb["name"]
