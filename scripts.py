@@ -27,7 +27,7 @@ def get_products_csv(collection):
         print("Products downloaded = ", count)
 
 
-get_products_csv(229315909)
+# get_products_csv(229315909)
 
 
 def get_ids_from_csv(file):
@@ -155,3 +155,55 @@ def save_collection_to_file(id, fp):
 
 
 # print(save_collection_to_file(229315909, "data/products_bulk_herbs.json"))
+
+def get_all_collections(fp):
+    with open(fp, "w") as write_file:
+        data0 = get_collections()
+        if "errors" in data0:
+            print("Errors: ", data0.get("errors"))
+            return False
+        data1 = get_smart_collections()
+        if "errors" in data1:
+            print("Errors: ", data1.get("errors"))
+            return False
+        data = data0.copy()
+        data.update(data1)
+        json.dump(data, write_file)
+        return True
+
+# print(get_all_collections("data/collections.json"))
+
+def get_a_product(id,fp):
+    with open(fp, "w") as write_file:
+        data = get_product(id)
+        if "errors" in data:
+            print("Errors: ", data.get("errors"))
+            return False
+        json.dump(data, write_file)
+        return True
+
+# print(get_a_product(4516588028002, "data/Agrimony.json"))
+
+def get_a_product(l,fp):
+    with open(fp, "w") as write_file:
+        data = get_list_of_products(l)
+        if "errors" in data:
+            print("Errors: ", data.get("errors"))
+            return False
+        json.dump(data, write_file)
+        return True
+
+products = ["4516588028002","388451500060","6542211317858","3964042477666","6342552901","6342558277"]
+
+def get_full_products_list(in_fp, out_fp):
+    products = []
+    with open(in_fp, "r") as read_file:
+        data = json.load(read_file)
+        for product in data.get("products"):
+            products.append(str(product["id"]))
+    return get_a_product(products,out_fp)
+        
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    print(get_full_products_list("data/products_bulk_herbs.json", "data/full_products.json"))

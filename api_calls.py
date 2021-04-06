@@ -70,3 +70,11 @@ def update_product(id, new_data):
         headers={"Content-Type": "application/json"}
     )
     return response.json()
+
+def get_list_of_products(l):
+    ids = ",".join(l)
+    url = f"{base_url}products.json?ids={ids}"
+    response = requests.get(
+        url
+    )
+    return response.json()
