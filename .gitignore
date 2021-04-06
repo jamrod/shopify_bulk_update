@@ -1,2 +1,4 @@
 data
 /bulk-updater
+secrets.*
+/__pycache__
