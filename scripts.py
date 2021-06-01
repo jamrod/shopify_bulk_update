@@ -184,7 +184,7 @@ def get_a_product(id,fp):
 
 # print(get_a_product(4516588028002, "data/Agrimony.json"))
 
-def get_a_product(l,fp):
+def get_a_list_of_product(l,fp):
     with open(fp, "w") as write_file:
         data = get_list_of_products(l)
         if "errors" in data:
@@ -204,6 +204,7 @@ def get_full_products_list(in_fp, out_fp):
     return get_a_product(products,out_fp)
         
 
+
 if __name__ == "__main__":
     # execute only if run as a script
-    print(get_full_products_list("data/products_bulk_herbs.json", "data/full_products.json"))
+    print(get_a_variant('32010483302498'))

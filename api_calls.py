@@ -78,3 +78,13 @@ def get_list_of_products(l):
         url
     )
     return response.json()
+
+# THIS didn't work
+# def get_list_of_products_fields(l,field_array):
+#     ids = ",".join(l)
+#     fields_string = ','.join(field_array)
+#     url = f"{base_url}products.json?ids={ids}?fields={fields_string}"
+#     response = requests.get(
+#         url
+#     )
+#     return response.json()
